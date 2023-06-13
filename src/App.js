@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Heading from "./Heading";
+import Input from "./Input";
+import Body from "./Body";
+import { useState } from "react";
 function App() {
+  const [data, setData] = useState([
+    { id: 1, task: "demo", desc: "demo", status: "Pending" },
+  ]);
+
+  const formHandler = (data) => {
+    setData((prevState) => {
+      return [...prevState, data];
+    });
+  };
+  const deleteListItem = (id) => {
+    let newdata = [...data].filter((data) => data.id !== id);
+    setData(newdata);
+  };
+  const completeListItem = (id) => {
+    const task = data.filter((item) => item.id === id)[0];
+    task.status = "Completed";
+    setData((prev) => prev.filter((item) => item.id !== id).concat([task]));
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Heading />
+      <Input inpData={formHandler} />
+      <Body
+        data={data}
+        deleteListItem={deleteListItem}
+        completeListItem={completeListItem}
+      />
     </div>
   );
 }
