@@ -4,7 +4,6 @@ const Body = ({ data, deleteListItem, completeListItem }) => {
   return (
     <>
       {data.map((ele) => {
-        console.log("ee", ele);
         return (
           <main className="Body" key={ele.id}>
             <div className="Description">
@@ -20,8 +19,8 @@ const Body = ({ data, deleteListItem, completeListItem }) => {
               <h5
                 style={{
                   textDecoration:
-                    ele.status === "Completed" ? "line-through" : "none",
-                  color: ele.status === "Completed" ? "#1E1E1E" : "#FFFFF",
+                    ele?.status === "Completed" ? "line-through" : "none",
+                  color: ele?.status === "Completed" ? "#1E1E1E" : "whitesmoke",
                 }}
               >
                 {ele.desc}
@@ -31,10 +30,10 @@ const Body = ({ data, deleteListItem, completeListItem }) => {
               <button
                 className="complete"
                 onClick={(e) => {
-                  completeListItem(ele.id);
+                  completeListItem(ele.id, ele.status);
                 }}
               >
-                Complete
+                {ele.status === "Completed" ? "Pending" : "Complete"}
               </button>
               <button
                 className="Delete"

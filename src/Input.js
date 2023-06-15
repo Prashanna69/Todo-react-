@@ -10,6 +10,7 @@ const Input = ({ inpData }) => {
       desc: desc,
       status: "Pending",
     };
+
     inpData(tempData);
   };
 
@@ -18,8 +19,9 @@ const Input = ({ inpData }) => {
       <label>Name</label>
       <input
         type="text"
-        placeholder="Name"
+        placeholder="Task..."
         required
+        value={name}
         onChange={(e) => {
           setName(e.target.value);
         }}
@@ -28,12 +30,21 @@ const Input = ({ inpData }) => {
       <input
         type="text"
         required
-        placeholder="Description"
+        placeholder="Today I will.."
+        value={desc}
         onChange={(n) => {
           setDesc(n.target.value);
         }}
       />
-      <button onClick={() => submitHandler()}>Add</button>
+      <button
+        onClick={() => {
+          submitHandler();
+          setDesc("");
+          setName("");
+        }}
+      >
+        Add
+      </button>
     </section>
   );
 };

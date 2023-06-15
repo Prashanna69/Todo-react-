@@ -25,6 +25,7 @@ body {
   max-width: 100%;
   padding: 1rem;
   margin: 1.5rem;
+  border-radius: 20px;
   background-color: #2b2b2b;
   justify-content: center;
 }
@@ -74,7 +75,12 @@ body {
   max-width: 100%;
   display: flex;
   flex-wrap: wrap;
+  border-radius: 20px;
   justify-content: space-between;
+}
+.Body:hover {
+  background-color: #3b3b3b;
+  transition: 0.5s;
 }
 .Description {
   display: flex;
@@ -85,6 +91,8 @@ body {
   width: 15rem;
 }
 .Description span {
+  max-width: 20rem;
+  word-wrap: break-word;
   font-size: 4rem;
   color: #e58a00;
   display: block;
